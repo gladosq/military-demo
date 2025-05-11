@@ -1,6 +1,6 @@
-import { Suspense, useRef } from 'react';
+import { Suspense, useEffect, useRef, useState } from 'react';
 import s from './FeaturesBlock.module.scss';
-import { Canvas, useFrame } from '@react-three/fiber';
+import { Canvas, useFrame, Vector3 } from '@react-three/fiber';
 import { Environment, useGLTF } from '@react-three/drei';
 import * as THREE from 'three';
 import { calcRotateAngle } from '../../utils/math';
@@ -16,12 +16,36 @@ function Model({ url, scrollModelRef }: FeaturesBlockProps & { url: string }) {
   const { scene } = useGLTF(url);
   const groupRef = useRef<THREE.Group>(null!);
 
+  const [scale, setScale] = useState(11);
+  const [position, setPosition] = useState<Vector3>([4, -3, 0]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 900) {
+        setScale(5);
+        setPosition([2, -0.8, -2]);
+      } else {
+        setScale(11);
+        setPosition([4, -3, 0]);
+      }
+    };
+
+    // Установите обработчик изменения размера окна
+    window.addEventListener('resize', handleResize);
+
+    // Вызовите обработчик при монтировании компонента
+    handleResize();
+
+    // Удалите обработчик при размонтировании компонента
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   useFrame(() => {
     if (groupRef.current && scrollModelRef.current) {
       const positionMultiplier = 0.01; // Коэффициент для изменения положения
-      const rotationMultiplier = 0.0004; // Коэффициент для изменения вращения по оси Y
-      const maxPosition = 7; // Максимальное значение позиции по X
-      const minPosition = 12; // Минимальное значение позиции по X
+      const rotationMultiplier = scale === 11 ? 0.0004 : 0.006; // Коэффициент для изменения вращения по оси Y
+      const maxPosition = scale === 11 ? 6 : -0.5; // Максимальное значение позиции по X
+      const minPosition = scale === 11 ? 10 : 14; // Минимальное значение позиции по X
 
       let newPosition = scrollModelRef.current.scrollTop * positionMultiplier * calcRotateAngle(rotationMultiplier);
       newPosition = Math.min(maxPosition, Math.max(minPosition, newPosition));
@@ -32,8 +56,8 @@ function Model({ url, scrollModelRef }: FeaturesBlockProps & { url: string }) {
   });
 
   return (
-    <group ref={groupRef} position={[4, -3, -4]} rotation={[0, 0, 0]}>
-      <primitive object={scene} scale={14} />
+    <group ref={groupRef} position={position} rotation={[0, 0, scale === 11 ? 0 : -0.5]}>
+      <primitive object={scene} scale={scale} />
     </group>
   );
 }

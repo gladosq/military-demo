@@ -5,11 +5,23 @@ import AutoScroll from 'embla-carousel-auto-scroll';
 import { usePrevNextButtons } from './SliderButtons';
 import '@/styles/embla.scss';
 import SliderButtonIcon from '../ui/icons/SliderButtonIcon';
+import SliderImage1 from './../../../public/images/slider-1.jpg';
+import SliderImage2 from './../../../public/images/slider-2.jpg';
+import SliderImage3 from './../../../public/images/slider-3.jpg';
+import SliderImage4 from './../../../public/images/slider-4.jpg';
+import SliderImage5 from './../../../public/images/slider-5.jpg';
+import SliderImage6 from './../../../public/images/slider-6.jpg';
+import SliderImage7 from './../../../public/images/slider-7.jpg';
 
-const SLIDES = Array.from({ length: 7 }, (_, index) => ({
-  id: index + 1,
-  url: `./../../../public/images/slider-${index + 1}.jpg`,
-}));
+const SLIDES = [
+  { id: 1, url: SliderImage1 },
+  { id: 2, url: SliderImage2 },
+  { id: 3, url: SliderImage3 },
+  { id: 4, url: SliderImage4 },
+  { id: 5, url: SliderImage5 },
+  { id: 6, url: SliderImage6 },
+  { id: 7, url: SliderImage7 },
+];
 
 export default function Slider() {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, slidesToScroll: 1, containScroll: 'trimSnaps' }, [
@@ -45,8 +57,7 @@ export default function Slider() {
       if (autoScroll && !autoScroll.isPlaying()) {
         autoScroll.play();
       }
-      console.log('autoScroll:', autoScroll);
-    }, 2000); // 2 секунды бездействия
+    }, 3000);
   }, [emblaApi]);
 
   useEffect(() => {
@@ -77,27 +88,21 @@ export default function Slider() {
       <div className='embla'>
         <div className={s.header}>
           <div className={s.navigation}>
-            <div className='embla__controls'>
-              <div className='embla__buttons'>
-                <button
-                  className={s.emblaButton}
-                  onClick={() => onButtonAutoplayClick(onPrevButtonClick)}
-                  disabled={prevBtnDisabled}
-                >
-                  <SliderButtonIcon />
-                </button>
-                <button
-                  className={s.emblaButton}
-                  onClick={() => onButtonAutoplayClick(onNextButtonClick)}
-                  disabled={nextBtnDisabled}
-                >
-                  <SliderButtonIcon />
-                </button>
-              </div>
-              {/* 
-              <button className='embla__play' onClick={toggleAutoplay} type='button'>
-                {isPlaying ? 'Stop' : 'Start'}
-              </button> */}
+            <div className='embla__buttons'>
+              <button
+                className={s.emblaButton}
+                onClick={() => onButtonAutoplayClick(onPrevButtonClick)}
+                disabled={prevBtnDisabled}
+              >
+                <SliderButtonIcon />
+              </button>
+              <button
+                className={s.emblaButton}
+                onClick={() => onButtonAutoplayClick(onNextButtonClick)}
+                disabled={nextBtnDisabled}
+              >
+                <SliderButtonIcon />
+              </button>
             </div>
           </div>
           <div className={s.textContainer}>

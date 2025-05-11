@@ -20,12 +20,20 @@
     );
     z-index: -1;
   }
+
+  @media screen and (max-width: 1066px) {
+    padding-bottom: 100px;
+  }
 }
 
 .wrapper {
   margin: auto;
   height: 80vh;
   position: relative;
+
+  @media screen and (max-width: 900px) {
+    height: 750px;
+  }
 }
 
 .canvasContainer {
@@ -44,6 +52,8 @@
   justify-content: space-between;
   height: 100%;
   max-width: $max-width;
+  padding-left: 10px;
+  padding-right: 10px;
   margin: auto;
 
   .firstCaption {
@@ -60,5 +70,28 @@
   h2 {
     font-size: 46px;
     font-weight: 300;
+  }
+
+  @media screen and (max-width: 1066px) {
+    h2 {
+      font-size: 36px;
+    }
+
+    .firstCaption {
+      width: 70%;
+    }
+  }
+
+  @media screen and (max-width: 800px) {
+    h2 {
+      font-size: 36px;
+    }
+
+    .firstCaption,
+    .secondCaption {
+      width: 100%;
+      text-align: left;
+      font-size: 30px;
+    }
   }
 }

@@ -5,6 +5,11 @@ import { Environment, OrbitControls, useGLTF } from '@react-three/drei';
 import RotateIcon from '../ui/icons/RotateIcon';
 import ButtonDecorationIcon from '../ui/icons/ButtonDecorationIcon';
 import clsx from 'clsx';
+import StopItemImage1 from './../../../public/images/shop-item-1.png';
+import StopItemImage2 from './../../../public/images/shop-item-2.png';
+import StopItemImage3 from './../../../public/images/shop-item-3.png';
+import StopItemImage4 from './../../../public/images/shop-item-4-cut.png';
+import StopItemImage5 from './../../../public/images/shop-item-5.png';
 
 import * as motion from 'motion/react-client';
 import ModelPreloader from '../ModelPreloader/ModelPreloader';
@@ -15,21 +20,21 @@ const Models = [
     url: '/models/backpack-1-compressed.glb',
     scale: 6,
     position: [0, -0.2, 0],
-    preview: './../../../public/images/shop-item-1.png',
+    preview: StopItemImage1,
   },
   {
     title: 'boots',
     url: '/models/boots-compressed.glb',
     scale: 0.14,
     position: [0, 0.6, 0],
-    preview: './../../../public/images/shop-item-2.png',
+    preview: StopItemImage2,
   },
   {
     title: 'knife',
     url: '/models/knife-compressed.glb',
     scale: 0.08,
     position: [0, -0.6, 0],
-    preview: './../../../public/images/shop-item-4-cut.png',
+    preview: StopItemImage3,
     rotation: [0, 1.5, 0.1],
   },
   {
@@ -37,14 +42,14 @@ const Models = [
     url: '/models/backpack-2-compressed.glb',
     scale: 4,
     position: [0, 1.6, 0],
-    preview: './../../../public/images/shop-item-3.png',
+    preview: StopItemImage4,
   },
   {
     title: 'vision',
     url: '/models/vision-compressed.glb',
     scale: 0.4,
     position: [0, 0.6, 0],
-    preview: './../../../public/images/shop-item-5.png',
+    preview: StopItemImage5,
   },
 ];
 

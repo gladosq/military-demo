@@ -7,6 +7,8 @@
   margin: auto;
   padding-top: 300px;
   padding-bottom: 300px;
+  padding-left: 10px;
+  padding-right: 10px;
 
   h1 {
     font-size: 60px;
@@ -14,6 +16,22 @@
     text-transform: uppercase;
     font-weight: 300;
     max-width: 55%;
+  }
+
+  @media screen and (max-width: 1400px) {
+    h1 {
+      font-size: 50px;
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    padding-top: 180px;
+    padding-bottom: 180px;
+
+    h1 {
+      font-size: 40px;
+      max-width: 100%;
+    }
   }
 }
 
