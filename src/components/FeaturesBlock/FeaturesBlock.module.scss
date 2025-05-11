@@ -1,0 +1,64 @@
+.root {
+  position: relative;
+  padding-bottom: 200px;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0);
+    opacity: 0.15;
+    background: repeating-linear-gradient(
+      -45deg,
+      #215f0e,
+      #215f0e 3.5px,
+      rgba(255, 255, 255, 0) 3.5px,
+      rgba(255, 255, 255, 0) 20.5px
+    );
+    z-index: -1;
+  }
+}
+
+.wrapper {
+  margin: auto;
+  height: 80vh;
+  position: relative;
+}
+
+.canvasContainer {
+  height: 100%;
+  z-index: -1;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.textContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  max-width: $max-width;
+  margin: auto;
+
+  .firstCaption {
+    text-align: right;
+    width: 44%;
+    margin-left: auto;
+    margin-top: 80px;
+  }
+
+  .secondCaption {
+    width: 50%;
+  }
+
+  h2 {
+    font-size: 46px;
+    font-weight: 300;
+  }
+}

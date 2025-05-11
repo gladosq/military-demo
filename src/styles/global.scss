@@ -1,0 +1,53 @@
+#root {
+  margin: 0 auto;
+  min-width: 100%;
+  min-height: 100%;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+  font-family: 'Montserrat', Arial, sans-serif;
+  color: $basic-black;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(195, 197, 206, 0.4);
+    border-radius: 6px;
+  }
+}
+
+a {
+  color: $basic-black;
+  text-decoration: none;
+}
+
+h1,
+h2 {
+  margin: 0;
+}
+
+p {
+  font-family: 'Montserrat', Arial, sans-serif;
+}
+
+.ant-message-notice-content {
+  background: $basic-green !important;
+  font-family: 'Montserrat', Arial, sans-serif;
+  color: $basic-white;
+}

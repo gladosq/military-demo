@@ -1,0 +1,118 @@
+.root {
+  background: $basic-green;
+  padding-top: 150px;
+  padding-bottom: 150px;
+
+  background: #182b22;
+  background: radial-gradient(circle at center, rgb(11, 22, 17) 0%, rgba(24, 43, 34, 1) 50%);
+}
+
+.wrapper {
+  max-width: $max-width;
+  margin: auto;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.textContainer {
+  h2 {
+    font-size: 40px;
+    color: $basic-white;
+    font-weight: 300;
+  }
+
+  p {
+    font-size: 15px;
+    color: $basic-white;
+    width: 50%;
+  }
+}
+
+.navigation {
+  display: flex;
+  gap: 18px;
+}
+
+.button {
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  position: relative;
+  width: 100px;
+  height: 100px;
+  padding: 10px;
+  user-select: none;
+
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: $basic-white;
+    box-sizing: border-box;
+    z-index: -1;
+    opacity: 0;
+  }
+
+  svg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    fill: rgba(255, 255, 255, 0.2);
+    transition: 0.1s ease fill;
+  }
+}
+
+.buttonActive {
+  svg {
+    fill: rgba(255, 255, 255, 0.8);
+  }
+
+  &::after {
+    z-index: 0;
+    opacity: 0.2;
+  }
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  position: relative;
+  z-index: 2;
+}
+
+.canvasContainer {
+  height: 65vh;
+}
+
+.canvas {
+  cursor: grab;
+}
+
+.helper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+
+  span {
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 16px;
+    font-weight: 300;
+  }
+
+  svg {
+    opacity: 0.2;
+    width: 80px;
+    height: 40px;
+  }
+}

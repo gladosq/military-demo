@@ -1,0 +1,23 @@
+.root {
+  background: rgba(0, 0, 0, 0.4);
+  margin-bottom: -40px;
+  z-index: 1;
+  position: relative;
+}
+
+.wrapper {
+  max-width: $max-width;
+  margin: auto;
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+}
+
+.logoWrapper {
+  a {
+    color: rgba(255, 255, 255, 0.5);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+}

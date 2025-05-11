@@ -1,0 +1,19 @@
+.button {
+  display: flex;
+  align-items: center;
+  padding: 8px 30px;
+  border-radius: 4px;
+  background: $basic-white;
+  font-family: var(--montserrat-font), sans-serif;
+  font-size: 18px;
+  font-weight: 300;
+  border: 0;
+  color: $basic-black;
+  position: relative;
+  cursor: pointer;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.4);
+    color: white;
+  }
+}
