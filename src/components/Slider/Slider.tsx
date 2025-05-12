@@ -25,9 +25,16 @@ const SLIDES = [
 
 export default function Slider() {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, slidesToScroll: 1, containScroll: 'trimSnaps' }, [
-    AutoScroll({ playOnInit: true }),
+    AutoScroll({
+      playOnInit: true,
+      breakpoints: {
+        '(max-width: 768px)': { active: false },
+      },
+    }),
   ]);
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  console.log('isMobile SLIDER:', isMobile);
 
   const interactionTimer = useRef<any>(null);
 
@@ -64,12 +71,6 @@ export default function Slider() {
     const autoScroll = emblaApi?.plugins()?.autoScroll;
     if (!autoScroll) return;
 
-    setIsPlaying(autoScroll.isPlaying());
-    emblaApi
-      .on('autoScroll:play', () => setIsPlaying(true))
-      .on('autoScroll:stop', () => setIsPlaying(false))
-      .on('reInit', () => setIsPlaying(autoScroll.isPlaying()));
-
     resetInteractionTimer();
 
     // Сбросьте таймер при взаимодействии
@@ -82,6 +83,13 @@ export default function Slider() {
       }
     };
   }, [emblaApi, resetInteractionTimer]);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   return (
     <div className={s.root}>

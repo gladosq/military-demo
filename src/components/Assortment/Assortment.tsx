@@ -1,5 +1,5 @@
 import s from './Assortment.module.scss';
-import { Suspense, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { Environment, OrbitControls, useGLTF } from '@react-three/drei';
 import RotateIcon from '../ui/icons/RotateIcon';
@@ -75,6 +75,15 @@ function getCurrentModal(title: string) {
 export default function Assortment() {
   const [title, setTitle] = useState('backpack-1');
 
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
     <div className={s.root}>
       <div className={s.wrapper}>
@@ -116,7 +125,7 @@ export default function Assortment() {
                 antialias: true,
                 depth: true,
               }}
-              className={s.canvas}
+              className={clsx(s.canvas, isMobile && s.canvasMobile)}
             >
               <OrbitControls
                 enableZoom={false}
@@ -138,10 +147,12 @@ export default function Assortment() {
             </Canvas>
           </Suspense>
         </div>
-        <div className={s.helper}>
-          <RotateIcon />
-          <span>Вращайте для просмотра</span>
-        </div>
+        {!isMobile && (
+          <div className={s.helper}>
+            <RotateIcon />
+            <span>Вращайте для просмотра</span>
+          </div>
+        )}
       </div>
     </div>
   );

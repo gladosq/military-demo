@@ -23,7 +23,7 @@ function Model({ url, scrollModelRef }: FeaturesBlockProps & { url: string }) {
     const handleResize = () => {
       if (window.innerWidth < 900) {
         setScale(5);
-        setPosition([2, -0.8, -2]);
+        setPosition([2, -1.7, -2]);
       } else {
         setScale(11);
         setPosition([4, -3, 0]);
@@ -43,9 +43,9 @@ function Model({ url, scrollModelRef }: FeaturesBlockProps & { url: string }) {
   useFrame(() => {
     if (groupRef.current && scrollModelRef.current) {
       const positionMultiplier = 0.01; // Коэффициент для изменения положения
-      const rotationMultiplier = scale === 11 ? 0.0004 : 0.006; // Коэффициент для изменения вращения по оси Y
+      const rotationMultiplier = scale === 11 ? 0.0004 : 0.003; // Коэффициент для изменения вращения по оси Y
       const maxPosition = scale === 11 ? 6 : -0.5; // Максимальное значение позиции по X
-      const minPosition = scale === 11 ? 10 : 14; // Минимальное значение позиции по X
+      const minPosition = scale === 11 ? 10 : 3; // Минимальное значение позиции по X
 
       let newPosition = scrollModelRef.current.scrollTop * positionMultiplier * calcRotateAngle(rotationMultiplier);
       newPosition = Math.min(maxPosition, Math.max(minPosition, newPosition));
